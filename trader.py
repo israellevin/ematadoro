@@ -3,6 +3,9 @@ import xmlrpc.client
 colorserver = xmlrpc.client.ServerProxy('http://127.0.0.1:6711')
 print("Connected to color server with functions: %s" % (', '.join(colorserver.system.listMethods())))
 
+#msgserver = xmlrpc.client.ServerProxy('http://127.0.0.1:6712')
+#print("Connected to message server with functions: %s" % (', '.join(msgserver.system.listMethods())))
+
 def makefilter(offeredInputs, quantityOffered, requestedAsset, Price, kyc, commitment):
     return {
         'offeredInputs': input('space separated list of [txhash:index] entries: '),
