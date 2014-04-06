@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import xmlrpc.client
 colorserver = xmlrpc.client.ServerProxy('http://127.0.0.1:6711')
-print("Connected to message server with functions: %s" % (', '.join(colorserver.system.listMethods())))
+print("Connected to color server with functions: %s" % (', '.join(colorserver.system.listMethods())))
 
 try:
     while True:
