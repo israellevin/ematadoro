@@ -1,12 +1,9 @@
 #!/usr/bin/python3
-import xmlrpc.client
-colorserver = xmlrpc.client.ServerProxy('http://127.0.0.1:6711')
-print("Connected to color server with functions: %s" % (', '.join(colorserver.system.listMethods())))
+import jsonrpclib
+colorserver = jsonrpclib.Server('http://127.0.0.1:6711')
+#print("Connected to color server with functions: %s" % (', '.join(colorserver.system.listMethods())))
 
-#msgserver = xmlrpc.client.ServerProxy('http://127.0.0.1:6712')
-#print("Connected to message server with functions: %s" % (', '.join(msgserver.system.listMethods())))
-
-def makefilter(offeredInputs, quantityOffered, requestedAsset, Price, kyc, commitment):
+def makefilter():
     return {
         'offeredInputs': input('space separated list of [txhash:index] entries: '),
         'quantityOffered': input('quantity offered: '),
@@ -24,7 +21,7 @@ try:
             print(colorserver.getvoutcolor(input("txhash:voutidx: ")))
             continue
         if 'm' == cmd.lower():
-            print(colorserver.makeconversion(input("convert: ")))
+            print(colorserver.makeconversion(makefilter()))
             continue
 except KeyboardInterrupt:
     from sys import exit
